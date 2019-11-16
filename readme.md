@@ -9,6 +9,12 @@ Status: IN PROGRESS...
 killall -9 java ; ./mvnw clean liberty:dev
 ```
 
+## TODO
+
+## resources
+
+* https://github.com/daggerok/open-liberty-mvc-thymeleaf
+
 <!--
 
 # MicroProfile generated Application
