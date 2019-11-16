@@ -12,5 +12,50 @@
         name: [[ ${name} ?: '...' ]]
         context: [[ ${context} ?: '...' ]]
     </pre>
+    <div id="connect">connecting...</div>
+    <div id="app">loading...</div>
+<script>
+    function onError(event) {
+        console.error('An error occurred:', event.data);
+    }
+
+    function onMessage(event) {
+        var eventPayload = JSON.parse(event.data);
+
+        var spanStock = document.createElement('span');
+        spanStock.textContent = eventPayload.stock;
+
+        var spanPrice = document.createElement('span');
+        spanPrice.textContent = eventPayload.price;
+
+        var div = document.createElement('div');
+        div.appendChild(spanStock);
+        div.appendChild(spanStock);
+
+        console.debug('update', div);
+        document.getElementById('app').innerHTML += div.innerHTML;
+    }
+
+    function onOpen() {
+        document.getElementById('connect').innerHTML = 'Connection established';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var webSocket = new WebSocket('ws://127.0.0.1:8181/stocks');
+
+        webSocket.onerror = onError;
+        webSocket.onopen = onOpen;
+        webSocket.onmessage = onMessage;
+
+        // function send() {
+        //     webSocket.send(JSON.stringify({
+        //         'stock': document.getElementById('stockName').value,
+        //         'price': document.getElementById('stockPrice').value
+        //     }));
+        // }
+
+    }, false);
+</script>
 </body>
 </html>

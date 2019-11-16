@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.example</groupId>
   <name>${project.artifactId}</name>
@@ -14,18 +15,22 @@
     <encoding>UTF-8</encoding>
     <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
-    <openliberty.maven.version>3.1</openliberty.maven.version>
     <final.name>${project.artifactId}</final.name>
-    <openliberty.version>[19.0.0.9,)</openliberty.version>
     <microprofile.version>3.0</microprofile.version>
     <failOnMissingWebXml>false</failOnMissingWebXml>
-    <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
-    <jakarta.jakartaee-web.version>8.0.0</jakarta.jakartaee-web.version>
-    <javax.mvc-api.version>1.0-pfd</javax.mvc-api.version>
+    <openliberty.version>[19.0.0.9,)</openliberty.version>
+    <openliberty.maven.version>3.1</openliberty.maven.version>
+    <vavr.version>0.10.2</vavr.version>
+    <logback.version>1.2.3</logback.version>
+    <lombok.version>1.18.10</lombok.version>
+    <Semantic-UI.version>2.4.1</Semantic-UI.version>
     <krazo-cxf.version>1.0.0-Beta1</krazo-cxf.version>
+    <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
+    <javax.mvc-api.version>1.0-pfd</javax.mvc-api.version>
+    <jakarta.jakartaee-web.version>8.0.0</jakarta.jakartaee-web.version>
     <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
-    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <jaxb-runtime.version>2.4.0-b180830.0438</jaxb-runtime.version>
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
     <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
@@ -35,34 +40,39 @@
       <groupId>org.eclipse.microprofile</groupId>
       <artifactId>microprofile</artifactId>
       <version>${microprofile.version}</version>
+      <scope>provided</scope>
       <type>pom</type>
+    </dependency>
+    <!-- in java we trust -->
+    <dependency>
+      <groupId>io.vavr</groupId>
+      <artifactId>vavr</artifactId>
+      <version>${vavr.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <optional>true</optional>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>Semantic-UI</artifactId>
-      <version>2.4.1</version>
-      <!--<optional>true</optional>
-      <scope>provided</scope>-->
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
     </dependency>
+    <!-- mvc -->
     <!--<dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>webjars-locator</artifactId>
-      <version>0.37</version>
-    </dependency>-->
-    <!-- thymeleaf mvc -->
-    <dependency>
-      <groupId>org.thymeleaf</groupId>
-      <artifactId>thymeleaf</artifactId>
-      <version>${thymeleaf.version}</version>
-    </dependency>
-    <dependency>
       <groupId>javax.mvc</groupId>
       <artifactId>javax.mvc-api</artifactId>
       <version>${javax.mvc-api.version}</version>
-    </dependency>
+    </dependency>-->
     <dependency>
+      <groupId>org.eclipse.krazo</groupId>
+      <artifactId>krazo-cxf</artifactId>
+      <version>${krazo-cxf.version}</version>
+    </dependency>
+    <!--<dependency>
       <groupId>jakarta.platform</groupId>
       <artifactId>jakarta.jakartaee-web-api</artifactId>
       <version>${jakarta.jakartaee-web.version}</version>
@@ -73,30 +83,27 @@
       <artifactId>javax.servlet-api</artifactId>
       <version>${javax.servlet-api.version}</version>
       <scope>provided</scope>
-    </dependency>
+    </dependency>-->
     <dependency>
-      <groupId>org.eclipse.krazo</groupId>
-      <artifactId>krazo-cxf</artifactId>
-      <version>${krazo-cxf.version}</version>
-    </dependency>
-
-    <!-- in java we trust -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.10</version>
-      <optional>true</optional>
+      <groupId>io.openliberty.features</groupId>
+      <artifactId>servlet-4.0</artifactId>
+      <version>${openliberty.version}</version>
       <scope>provided</scope>
+      <type>esa</type>
     </dependency>
+    <!-- thymeleaf -->
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.2.3</version>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf</artifactId>
+      <version>${thymeleaf.version}</version>
     </dependency>
+    <!-- webjars static resources -->
     <dependency>
-      <groupId>io.vavr</groupId>
-      <artifactId>vavr</artifactId>
-      <version>0.10.2</version>
+      <groupId>org.webjars</groupId>
+      <artifactId>Semantic-UI</artifactId>
+      <version>${Semantic-UI.version}</version>
+      <!--<optional>true</optional>
+      <scope>provided</scope>-->
     </dependency>
   </dependencies>
   <build>

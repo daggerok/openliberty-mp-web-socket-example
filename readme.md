@@ -3,6 +3,8 @@ Yet another OpenLiberty MicroProfile Thymeleaf MVC web app...
 
 Status: IN PROGRESS...
 
+TODO: Implement WebSocket Java / Jakarta EE 8 Endpoint
+
 ## dev
 
 ```bash
