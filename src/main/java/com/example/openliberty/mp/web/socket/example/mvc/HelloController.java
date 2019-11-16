@@ -1,4 +1,4 @@
-package com.example.openliberty.mp.web.socket.example;
+package com.example.openliberty.mp.web.socket.example.mvc;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
