@@ -1,5 +1,7 @@
 package com.example.openliberty.mp.web.socket.example.mvc;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.mvc.Controller;
@@ -11,9 +13,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+@Slf4j
 @Path("")
 @Controller
-public class HelloController {
+public class IndexPage {
 
     @Inject
     private Models models;
@@ -25,19 +28,19 @@ public class HelloController {
         models.put("name", "Buddy");
     }
 
-    @GET
-    @Path("world")
-    @Produces(MediaType.TEXT_HTML)
-    public String wold() {
-        models.put("name", "World");
-        return "hello";
-    }
-
-    @GET
-    @Path("{name}")
-    @Produces(MediaType.TEXT_HTML)
-    public String wold(@PathParam("name") String name) {
-        models.put("name", name);
-        return "hello";
-    }
+    // @GET
+    // @Path("world")
+    // @Produces(MediaType.TEXT_HTML)
+    // public String wold() {
+    //     models.put("name", "World");
+    //     return "hello";
+    // }
+    //
+    // @GET
+    // @Path("{name}")
+    // @Produces(MediaType.TEXT_HTML)
+    // public String wold(@PathParam("name") String name) {
+    //     models.put("name", name);
+    //     return "hello";
+    // }
 }

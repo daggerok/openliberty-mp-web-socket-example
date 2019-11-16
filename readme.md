@@ -6,14 +6,13 @@ Status: IN PROGRESS...
 ## dev
 
 ```bash
-killall -9 java ; ./mvnw clean liberty:dev
+./mvnw clean liberty:dev
+# or
+./mvnw clean package ; java -jar target/*.jar
 ```
 
-## TODO
-
-## resources
-
-* https://github.com/daggerok/open-liberty-mvc-thymeleaf
+* open app on: http://127.0.0.1:8181/data/
+* webjars is also works: http://localhost:8181/webjars/Semantic-UI/2.4.1/semantic.css
 
 <!--
 

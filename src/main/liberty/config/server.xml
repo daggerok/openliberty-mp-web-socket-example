@@ -2,9 +2,10 @@
 <server description="${project.name}">
 
     <featureManager>
-        <feature>servlet-4.0</feature>
         <feature>beanValidation-2.0</feature>
         <feature>microProfile-3.0</feature>
+        <feature>websocket-1.1</feature>
+        <feature>servlet-4.0</feature>
         <!--
         <feature>cdi-2.0</feature>
         <feature>jndi-1.0</feature>

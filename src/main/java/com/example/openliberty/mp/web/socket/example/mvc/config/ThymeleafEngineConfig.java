@@ -17,6 +17,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static java.util.stream.Collectors.joining;
+
 @Slf4j
 @Singleton
 public class ThymeleafEngineConfig extends ViewEngineBase {
@@ -48,8 +50,13 @@ public class ThymeleafEngineConfig extends ViewEngineBase {
         var response = context.getResponse(HttpServletResponse.class);
         var webContext = new WebContext(request, response, servletContext, request.getLocale());
         webContext.setVariables(context.getModels().asMap());
-        request.setAttribute("view", context.getView());
-        Try.run(() -> templateEngine.process(/*layout*/ context.getView(), webContext, response.getWriter()))
+        var view = context.getView();
+        request.setAttribute("view", view);
+        Try.run(() -> templateEngine.process(/*layout*/ view, webContext, response.getWriter()))
            .onFailure(e -> log.error("\n\n\n" + e.getLocalizedMessage() + "\n"));
+        var absolutePath = context.getUriInfo().getAbsolutePath();
+        var controllers = context.getUriInfo().getMatchedResources().stream().map(Object::toString).collect(joining());
+        log.info("rendered {} view {} {}", absolutePath, view, controllers);
+        // context.getModels().asMap().entrySet().stream().map(e -> e.getKey() + ": " + e.getValue()).collect(joining(", "))));
     }
 }
