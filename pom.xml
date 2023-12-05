@@ -21,7 +21,7 @@
     <openliberty.version>[19.0.0.9,)</openliberty.version>
     <openliberty.maven.version>3.1</openliberty.maven.version>
     <vavr.version>0.10.2</vavr.version>
-    <logback.version>1.2.3</logback.version>
+    <logback.version>1.2.13</logback.version>
     <lombok.version>1.18.10</lombok.version>
     <Semantic-UI.version>2.4.1</Semantic-UI.version>
     <krazo-cxf.version>1.0.0-Beta1</krazo-cxf.version>
